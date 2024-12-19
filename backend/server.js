@@ -1,5 +1,6 @@
 const express = require("express");
 const dotenv = require("dotenv");
+const { default: mongoose } = require("mongoose");
 
 dotenv.config();
 
@@ -7,7 +8,10 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 
-
+mongoose.connect(process.env.MONGO_URL)
+.then(()=>{
+    console.log("DB connected")
+}).catch(err => console.log(err))
 
 
 
