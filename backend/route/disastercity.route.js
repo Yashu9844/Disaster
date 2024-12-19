@@ -7,4 +7,6 @@ const router = express.Router();
 
 router.get('/disastercity', getDisaterCity);
 
+
+
 export default router;
