@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-<<<<<<< HEAD
-=======
+
+
   "type": "module",
->>>>>>> a8a96c6de90de7d2eeec78b08e8e4249af38cf86
+
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js"
