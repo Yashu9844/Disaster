@@ -7,6 +7,8 @@ import cors from 'cors'
 import mongoose from 'mongoose'
 import disRouter  from './route/disastercity.route.js'
 import reportRouter from './route/report.route.js'
+import aiRouter from './route/aihelp.route.js'
+
 const port = process.env.PORT || 3000
 
 const app = express()
@@ -14,6 +16,7 @@ app.use(cors())
 app.use(express.json());
 
 app.use('/api/dis',disRouter)
+app.use('/api/ai',aiRouter)
 app.use('/api/rep',reportRouter)
 // Use the strict middleware that throws when unauthenticated
 app.get('/protected-auth-required', ClerkExpressRequireAuth(), (req, res) => {
@@ -21,10 +24,10 @@ app.get('/protected-auth-required', ClerkExpressRequireAuth(), (req, res) => {
   res.json(req.auth)
 })
 
-mongoose.connect(process.env.MONGO_URL)
-.then(()=>{
-    console.log("DB connected")
-}).catch(err => console.log(err))
+// mongoose.connect(process.env.MONGO_URL)
+// .then(()=>{
+//     console.log("DB connected")
+// }).catch(err => console.log(err))
 
 app.get('/protected-auth-optional', ClerkExpressWithAuth(), (req, res) => {
   console.log(req.auth)
