@@ -59,11 +59,13 @@ const Navbar = () => {
           </div>
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
             <div className="flex shrink-0 relative items-center">
-              <img
-                className="h-8 w-auto scale-150"
-                src="/public/logo.png"
-                alt="Your Company"
-              />
+              <Link to={"/"}>
+                <img
+                  className="h-8 w-auto scale-150"
+                  src="/public/logo.png"
+                  alt="Your Company"
+                />
+              </Link>
             </div>
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">

@@ -10,7 +10,7 @@ const FloodInfo = () => {
   return (
     <div className="max-w-4xl mx-auto p-6 mt-10">
       <header className="text-center mb-8">
-        <h1 className="text-4xl font-semibold text-blue-800">
+        <h1 className="text-4xl font-semibold text-blue-900">
           Flood Information
         </h1>
       </header>
@@ -18,7 +18,7 @@ const FloodInfo = () => {
       <section className="mb-8">
         <Card className="bg-white p-6 shadow-lg rounded-lg">
           <CardHeader>
-            <CardTitle className="text-2xl font-medium text-blue-600">
+            <CardTitle className="text-2xl font-medium text-blue-950">
               What is a Flood?
             </CardTitle>
           </CardHeader>
@@ -35,7 +35,7 @@ const FloodInfo = () => {
       <section className="mb-8">
         <Card className="bg-white p-6 shadow-lg rounded-lg">
           <CardHeader>
-            <CardTitle className="text-2xl font-medium text-blue-600">
+            <CardTitle className="text-2xl font-medium text-blue-950">
               Causes of Floods
             </CardTitle>
           </CardHeader>
@@ -53,7 +53,7 @@ const FloodInfo = () => {
       <section className="mb-8">
         <Card className="bg-white p-6 shadow-lg rounded-lg">
           <CardHeader>
-            <CardTitle className="text-2xl font-medium text-blue-600">
+            <CardTitle className="text-2xl font-medium text-blue-950">
               Preventive Measures
             </CardTitle>
           </CardHeader>
@@ -69,7 +69,7 @@ const FloodInfo = () => {
         </Card>
       </section>
 
-      <footer className="text-center mt-12 text-sm text-gray-600">
+      <footer className="text-center mt-12 text-sm text-gray-950">
         <p>Flood Information | For Awareness and Prevention</p>
       </footer>
     </div>

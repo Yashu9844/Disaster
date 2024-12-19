@@ -16,6 +16,9 @@ import {
   useUser,
 } from "@clerk/clerk-react";
 import DisasterInfo from "./pages/Disaster";
+import EarthquakeInfo from "./pages/Educate/Earthquake.tsx";
+import Hurricane from "./pages/Educate/Hurricane.tsx";
+import Wildfire from "./pages/Educate/Wildfire.tsx";
 
 function App() {
   const { getToken } = useAuth();
@@ -37,6 +40,10 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/disaster" element={<DisasterInfo />} />
             <Route path="/flood" element={<FloodInfo />} />
+            <Route path="/earthquake" element={<EarthquakeInfo />} />
+            <Route path="/hurricane" element={<Hurricane />} />
+            <Route path="/wildfire" element={<Wildfire />} />
+
             <Route path="/report" element={<ReportDisaster />} />
             <Route path="/disasters" element={<ReportedDisasters />} />
             <Route path="/educate" element={<Educate />} />

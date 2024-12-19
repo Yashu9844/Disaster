@@ -1,30 +1,12 @@
-"use client";
-
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage, FormDescription } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-  SelectGroup,
-} from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, SelectGroup } from "@/components/ui/select";
 import { Card, CardTitle } from "@/components/ui/card";
-// import Location from "@/components/Location";
 
 const FormSchema = z.object({
   address: z.string().min(5, {
@@ -52,16 +34,41 @@ function Report() {
     },
   });
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast({
-      title: "You submitted the following values:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    });
-  }
+  const onSubmit = async (data: z.infer<typeof FormSchema>) => {
+    try {
+      // Sending data to the backend
+      const response = await fetch('http://localhost:3000/api/rep/addReport', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+     console.log(result)
+      if (response.ok) {
+        toast({
+          title: "Report submitted successfully",
+          description: (
+            <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+              <code className="text-white">{JSON.stringify(result, null, 2)}</code>
+            </pre>
+          ),
+        });
+      } else {
+        toast({
+          title: "Submission failed",
+          description: result.message || "Something went wrong.",
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "There was an error submitting the report.",
+      });
+    }
+  };
 
   return (
     <Card className="max-w-md bg-background mx-auto p-4 mt-10">
