@@ -6,24 +6,26 @@ import { ClerkExpressRequireAuth, ClerkExpressWithAuth } from '@clerk/clerk-sdk-
 import cors from 'cors'
 import mongoose from 'mongoose'
 import disRouter  from './route/disastercity.route.js'
-
+import reportRouter from './route/report.route.js'
 const port = process.env.PORT || 3000
 
 const app = express()
 app.use(cors())
+app.use(express.json());
+
 app.use('/api/dis',disRouter)
+app.use('/api/rep',reportRouter)
 // Use the strict middleware that throws when unauthenticated
 app.get('/protected-auth-required', ClerkExpressRequireAuth(), (req, res) => {
   console.log(req.auth)
   res.json(req.auth)
 })
 
-// mongoose.connect(process.env.MONGO_URL)
-// .then(()=>{
-//     console.log("DB connected")
-// }).catch(err => console.log(err))
+mongoose.connect(process.env.MONGO_URL)
+.then(()=>{
+    console.log("DB connected")
+}).catch(err => console.log(err))
 
-// Use the lax middleware that returns an empty auth object when unauthenticated
 app.get('/protected-auth-optional', ClerkExpressWithAuth(), (req, res) => {
   console.log(req.auth)
 
