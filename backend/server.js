@@ -24,10 +24,10 @@ app.get('/protected-auth-required', ClerkExpressRequireAuth(), (req, res) => {
   res.json(req.auth)
 })
 
-// mongoose.connect(process.env.MONGO_URL)
-// .then(()=>{
-//     console.log("DB connected")
-// }).catch(err => console.log(err))
+mongoose.connect(process.env.MONGO_URL)
+.then(()=>{
+    console.log("DB connected")
+}).catch(err => console.log(err))
 
 app.get('/protected-auth-optional', ClerkExpressWithAuth(), (req, res) => {
   console.log(req.auth)
