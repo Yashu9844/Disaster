@@ -13,12 +13,8 @@ const filterIndiaDisasters = (data) => {
 // Controller function to handle fetching and filtering disaster data
 export const getDisaterCity = async (req, res) => {
   try {
-    const response = await axios.get(DISASTER_API_URL, {
-      params: {
-        appname: 'my-disaster-app', // Replace with your app name
-        limit: 50,                  // Fetch more results to filter
-      },
-    });
+    const response = await axios.get(DISASTER_API_URL);
+    console.log(response)
 
     // Filter the disasters to include only those mentioning "India"
     const filteredDisasters = filterIndiaDisasters(response.data.data);
