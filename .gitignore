@@ -1,0 +1,53 @@
+# Node.js modules
+node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Build output
+dist/
+build/
+
+# Dependency directories
+.pnpm/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDE and editor-specific files
+.vscode/
+.idea/
+*.swp
+
+# Debugging
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage reports
+coverage/
+
+# Temporary files
+temp/
+tmp/
+*.tmp
+
+# System files
+*.bak
+*.orig
+*.rej
+
+# Miscellaneous
+*.log
+*.lock
