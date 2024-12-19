@@ -5,12 +5,13 @@ import express from 'express'
 import { ClerkExpressRequireAuth, ClerkExpressWithAuth } from '@clerk/clerk-sdk-node'
 import cors from 'cors'
 import mongoose from 'mongoose'
+import disRouter  from './route/disastercity.route.js'
 
 const port = process.env.PORT || 3000
 
 const app = express()
 app.use(cors())
-
+app.use('/api/dis',disRouter)
 // Use the strict middleware that throws when unauthenticated
 app.get('/protected-auth-required', ClerkExpressRequireAuth(), (req, res) => {
   console.log(req.auth)
@@ -40,6 +41,8 @@ app.use((err, req, res, next) => {
 app.get('/', function (req, res) {
   res.send('Hello World!')
 })
+
+
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
