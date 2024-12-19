@@ -1,9 +1,10 @@
 // import './App.css'
-import { SignInButton, SignedIn, SignedOut, UserButton, useAuth } from '@clerk/clerk-react'
+import { SignInButton, SignedIn, SignedOut, UserButton, useAuth, useUser } from '@clerk/clerk-react'
 import { useState } from 'react'
 
 function App() {
   const { getToken } = useAuth()
+  const { user } = useUser() // Access user details
   const [data, setData] = useState({})
 
   async function callProtectedAuthRequired() {
@@ -36,6 +37,8 @@ function App() {
       </SignedOut>
       <SignedIn>
         <UserButton />
+        <h2>Phone Number:</h2>
+        <p>{user?.phoneNumbers?.[0]?.phoneNumber || "Phone number not available"}</p>
         <button onClick={callProtectedAuthRequired}>Call /protected-auth-required</button>
         <button onClick={callProtectedAuthOptional}>Call /protected-auth-optional</button>
         <h1>Data from API:</h1>
