@@ -1,28 +1,48 @@
-import CountBtn from "@/components/count-btn";
-import ReactSVG from "@/assets/react.svg";
-import { Badge } from "@/components/ui/badge";
-import Testing from "./components/Testing";
+// import './App.css'
+import { SignInButton, SignedIn, SignedOut, UserButton, useAuth } from '@clerk/clerk-react'
+import { useState } from 'react'
+
 function App() {
+  const { getToken } = useAuth()
+  const [data, setData] = useState({})
+
+  async function callProtectedAuthRequired() {
+    const token = await getToken()
+    const res = await fetch('http://localhost:3000/protected-auth-required', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    const json = await res.json()
+    setData(json)
+  }
+
+  async function callProtectedAuthOptional() {
+    const token = await getToken()
+    const res = await fetch('http://localhost:3000/protected-auth-optional', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    const json = await res.json()
+    setData(json)
+  }
+
   return (
-    <main className="flex flex-col items-center justify-center h-screen">
-      <div className="flex flex-col items-center gap-y-4">
-        <div className="inline-flex items-center gap-x-4">
-          <img src={ReactSVG} alt="React Logo" className="w-32" />
-          <span className="text-6xl">+</span>
-          <img src={"/vite.svg"} alt="Vite Logo" className="w-32" />
-        </div>
-        <a
-          href="https://ui.shadcn.com"
-          rel="noopener noreferrer nofollow"
-          target="_blank"
-        >
-          <Badge variant="outline">shadcn/ui</Badge>
-        </a>
-        <CountBtn />
-        <Testing />
-      </div>
-    </main>
-  );
+    <>
+      <p>Hello World!</p>
+      <SignedOut>
+        <SignInButton />
+      </SignedOut>
+      <SignedIn>
+        <UserButton />
+        <button onClick={callProtectedAuthRequired}>Call /protected-auth-required</button>
+        <button onClick={callProtectedAuthOptional}>Call /protected-auth-optional</button>
+        <h1>Data from API:</h1>
+        <p>{JSON.stringify(data, null, 2)}</p>
+      </SignedIn>
+    </>
+  )
 }
 
-export default App;
+export default App
