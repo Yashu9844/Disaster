@@ -66,7 +66,6 @@ function Report() {
   return (
     <Card className="max-w-md bg-background mx-auto p-4 mt-10">
       <CardTitle className="my-4">Report Disaster</CardTitle>
-      {/* <Location /> */}
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <FormField
